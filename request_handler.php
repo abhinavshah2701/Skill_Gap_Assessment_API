@@ -23,4 +23,8 @@ else if(isset($_POST['addSkill']))
     include('libraries/addSkill.php');
 else if(isset($_GET['viewSkill']))
     include('libraries/viewSkill.php');
+else if(isset($_GET['viewCategoryData']))
+    include('libraries/viewCategoryData.php');    
+else if(isset($_POST['updateCategory']))
+    include('libraries/updateCategory.php');
 ?>
