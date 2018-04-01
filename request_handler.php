@@ -27,4 +27,6 @@ else if(isset($_GET['viewCategoryData']))
     include('libraries/viewCategoryData.php');    
 else if(isset($_POST['updateCategory']))
     include('libraries/updateCategory.php');
+else if(isset($_POST['deleteCategory']))
+    include('libraries/deleteCategory.php');    
 ?>
