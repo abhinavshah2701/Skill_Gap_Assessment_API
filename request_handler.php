@@ -33,4 +33,6 @@ else if(isset($_GET['viewSubCategoryData']))
     include('libraries/viewSubCategoryData.php');      
 else if(isset($_POST['updateSubCategory']))
     include('libraries/updateSubCategory.php');    
+else if(isset($_POST['deleteSubCategory']))
+    include('libraries/deleteSubCategory.php');
 ?>
