@@ -35,4 +35,8 @@ else if(isset($_POST['updateSubCategory']))
     include('libraries/updateSubCategory.php');    
 else if(isset($_POST['deleteSubCategory']))
     include('libraries/deleteSubCategory.php');
+else if(isset($_GET['viewSkillData']))
+    include('libraries/viewSkillData.php');    
+else if(isset($_POST['updateSkill']))
+    include('libraries/updateSkill.php');    
 ?>
