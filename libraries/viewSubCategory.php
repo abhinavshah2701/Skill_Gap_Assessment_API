@@ -1,6 +1,6 @@
 <?php
 
-$sql = "SELECT sub_category_id,category_description,sub_category_description FROM `sub_category_master` sc,category_master cm where sc.category_id = cm.category_id";
+$sql = "SELECT sub_category_id,cm.category_id,category_description,sub_category_description FROM `sub_category_master` sc,category_master cm where sc.category_id = cm.category_id";
 $res = mysqli_query($connect,$sql);
 $subcategories = array();
 

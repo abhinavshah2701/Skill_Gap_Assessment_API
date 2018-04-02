@@ -1,14 +1,14 @@
 <?php
 
-$categoryname=$_POST['categoryname'];
-$subcategoryname=$_POST['subcategoryname'];
+$category_id=$_POST['categoryname'];
+$sub_category_id=$_POST['subcategoryname'];
 $skillname=$_POST['skillname'];
 
-$sql_temp = "select * from category_master c,sub_category_master s where c.category_id = s.category_id and c.category_description='$categoryname' and s.sub_category_description='$subcategoryname'";
-$res_temp = mysqli_query($connect,$sql_temp);
-$row_temp = mysqli_fetch_assoc($res_temp);
-$category_id = $row_temp['category_id'];
-$sub_category_id = $row_temp['sub_category_id'];
+// $sql_temp = "select * from category_master c,sub_category_master s where c.category_id = s.category_id and c.category_description='$categoryname' and s.sub_category_description='$subcategoryname'";
+// $res_temp = mysqli_query($connect,$sql_temp);
+// $row_temp = mysqli_fetch_assoc($res_temp);
+// $category_id = $row_temp['category_id'];
+// $sub_category_id = $row_temp['sub_category_id'];
 
 
 $sql_temp = "SELECT * FROM `skill_master` WHERE `skill_description` = '$skillname'";
