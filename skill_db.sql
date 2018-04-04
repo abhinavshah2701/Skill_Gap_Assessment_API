@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 04, 2018 at 06:07 AM
+-- Generation Time: Apr 04, 2018 at 07:24 AM
 -- Server version: 5.7.14
 -- PHP Version: 7.0.10
 
@@ -90,7 +90,7 @@ CREATE TABLE `question_option_master` (
   `option_id` int(11) NOT NULL,
   `option_description` varchar(50) NOT NULL,
   `correct_option` enum('true','false') DEFAULT NULL,
-  `rating` int(11) NOT NULL
+  `option_rating` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -140,19 +140,32 @@ CREATE TABLE `user_master` (
 --
 
 INSERT INTO `user_master` (`user_id`, `first_name`, `middle_name`, `last_name`, `gender`, `email`, `passwd`, `contact`, `user_type`) VALUES
-(1, 'Abhinav', 'Kirankumar', 'Shah', 'Male', '1bbd886460827015e5d605ed44252251', '11111111', '9427021031', 'Admin');
+(1, 'Abhinav', 'Kirankumar', 'Shah', 'Male', 'abhinavk.shah@gmail.com', '1bbd886460827015e5d605ed44252251', '9427021031', 'Employee');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user_response_master`
+-- Table structure for table `user_response`
 --
 
-CREATE TABLE `user_response_master` (
-  `user_id` int(11) DEFAULT NULL,
+CREATE TABLE `user_response` (
+  `user_id` int(11) NOT NULL,
+  `employee_id` int(11) NOT NULL,
+  `question_id` int(11) NOT NULL,
   `form_id` int(11) DEFAULT NULL,
-  `question_id` int(11) DEFAULT NULL,
-  `response` varchar(100) NOT NULL
+  `question_total_rating` varchar(100) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_response_option`
+--
+
+CREATE TABLE `user_response_option` (
+  `user_response_id` int(11) NOT NULL,
+  `option_id` int(11) NOT NULL,
+  `option_rating` varchar(100) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
@@ -218,6 +231,18 @@ ALTER TABLE `user_master`
   ADD PRIMARY KEY (`user_id`),
   ADD UNIQUE KEY `email` (`email`),
   ADD UNIQUE KEY `contact` (`contact`);
+
+--
+-- Indexes for table `user_response`
+--
+ALTER TABLE `user_response`
+  ADD PRIMARY KEY (`user_id`,`employee_id`,`question_id`);
+
+--
+-- Indexes for table `user_response_option`
+--
+ALTER TABLE `user_response_option`
+  ADD PRIMARY KEY (`user_response_id`,`option_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables

@@ -56,13 +56,23 @@ create table question_option_master(
     option_id int not null,
     option_description varchar(50) not null,
     correct_option enum('true','false'),
-    rating int not null,
+    option_rating int not null,
     CONSTRAINT question_option_id PRIMARY KEY (question_id,option_id)
 )
 
-create table user_response_master(
+create table user_response(
     user_id int references user_master(user_id),
-    form_id int references form_master(form_id),
+    employee_id int references employee_master(employee_id),
     question_id int references question_master(question_id),
-    response varchar(100) not null
+    form_id int references form_master(form_id),
+    question_total_rating varchar(100) not null,
+    CONSTRAINT user_response_id PRIMARY KEY (user_id,employee_id,question_id)
+)
+
+
+create table user_response_option(
+    user_response_id int references user_response(user_response_id),
+    option_id int references question_option_master(question_option_id),
+    option_rating varchar(100) not null,
+    CONSTRAINT user_response_id PRIMARY KEY (user_response_id,option_id)
 )
