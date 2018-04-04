@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 04, 2018 at 07:24 AM
+-- Generation Time: Apr 04, 2018 at 07:20 PM
 -- Server version: 5.7.14
 -- PHP Version: 7.0.10
 
@@ -140,7 +140,7 @@ CREATE TABLE `user_master` (
 --
 
 INSERT INTO `user_master` (`user_id`, `first_name`, `middle_name`, `last_name`, `gender`, `email`, `passwd`, `contact`, `user_type`) VALUES
-(1, 'Abhinav', 'Kirankumar', 'Shah', 'Male', 'abhinavk.shah@gmail.com', '1bbd886460827015e5d605ed44252251', '9427021031', 'Employee');
+(1, 'Abhinav', 'Kirankumar', 'Shah', 'Male', 'abhinavk.shah@gmail.com', '1bbd886460827015e5d605ed44252251', '9427021031', 'Admin');
 
 -- --------------------------------------------------------
 
@@ -153,7 +153,7 @@ CREATE TABLE `user_response` (
   `employee_id` int(11) NOT NULL,
   `question_id` int(11) NOT NULL,
   `form_id` int(11) DEFAULT NULL,
-  `question_total_rating` varchar(100) NOT NULL
+  `question_total_rating` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -165,7 +165,7 @@ CREATE TABLE `user_response` (
 CREATE TABLE `user_response_option` (
   `user_response_id` int(11) NOT NULL,
   `option_id` int(11) NOT NULL,
-  `option_rating` varchar(100) NOT NULL
+  `option_rating` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --

@@ -65,7 +65,7 @@ create table user_response(
     employee_id int references employee_master(employee_id),
     question_id int references question_master(question_id),
     form_id int references form_master(form_id),
-    question_total_rating varchar(100) not null,
+    question_total_rating int not null,
     CONSTRAINT user_response_id PRIMARY KEY (user_id,employee_id,question_id)
 )
 
@@ -73,6 +73,6 @@ create table user_response(
 create table user_response_option(
     user_response_id int references user_response(user_response_id),
     option_id int references question_option_master(question_option_id),
-    option_rating varchar(100) not null,
+    option_rating int not null,
     CONSTRAINT user_response_id PRIMARY KEY (user_response_id,option_id)
 )
