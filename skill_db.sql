@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 01, 2018 at 07:47 AM
+-- Generation Time: Apr 04, 2018 at 06:07 AM
 -- Server version: 5.7.14
 -- PHP Version: 7.0.10
 
@@ -31,14 +31,16 @@ CREATE TABLE `category_master` (
   `category_description` varchar(50) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `category_master`
+-- Table structure for table `employee_master`
 --
 
-INSERT INTO `category_master` (`category_id`, `category_description`) VALUES
-(1, 'Technical'),
-(2, 'Communication'),
-(3, 'Soft');
+CREATE TABLE `employee_master` (
+  `employee_id` int(11) NOT NULL,
+  `user_id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -48,7 +50,19 @@ INSERT INTO `category_master` (`category_id`, `category_description`) VALUES
 
 CREATE TABLE `form_master` (
   `form_id` int(11) NOT NULL,
+  `skill_id` int(11) DEFAULT NULL,
   `form_name` varchar(30) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `manager_master`
+--
+
+CREATE TABLE `manager_master` (
+  `manager_id` int(11) NOT NULL,
+  `user_id` int(11) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -59,11 +73,10 @@ CREATE TABLE `form_master` (
 
 CREATE TABLE `question_master` (
   `question_id` int(11) NOT NULL,
-  `skill_id` int(11) DEFAULT NULL,
   `form_id` int(11) DEFAULT NULL,
-  `question_type` enum('Single Option','Multiple Option','Descriptive') DEFAULT NULL,
+  `question_type` enum('Single Option','Multiple Option') DEFAULT NULL,
   `question_description` varchar(255) NOT NULL,
-  `rating` int(11) NOT NULL
+  `total_rating` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -76,7 +89,8 @@ CREATE TABLE `question_option_master` (
   `question_id` int(11) NOT NULL,
   `option_id` int(11) NOT NULL,
   `option_description` varchar(50) NOT NULL,
-  `correct_answer` enum('true','false') DEFAULT NULL
+  `correct_option` enum('true','false') DEFAULT NULL,
+  `rating` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -91,17 +105,6 @@ CREATE TABLE `skill_master` (
   `skill_description` varchar(50) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `skill_master`
---
-
-INSERT INTO `skill_master` (`skill_id`, `sub_category_id`, `skill_description`) VALUES
-(1, 1, 'Php'),
-(2, 1, 'Html'),
-(3, 1, 'Html5'),
-(4, 4, 'Group'),
-(5, 6, 'Self');
-
 -- --------------------------------------------------------
 
 --
@@ -113,18 +116,6 @@ CREATE TABLE `sub_category_master` (
   `category_id` int(11) DEFAULT NULL,
   `sub_category_description` varchar(50) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `sub_category_master`
---
-
-INSERT INTO `sub_category_master` (`sub_category_id`, `category_id`, `sub_category_description`) VALUES
-(1, 1, 'Web'),
-(2, 1, 'Java'),
-(3, 1, 'Big Data'),
-(4, 2, 'Speaking'),
-(5, 2, 'Listening'),
-(6, 3, 'Learning');
 
 -- --------------------------------------------------------
 
@@ -139,9 +130,9 @@ CREATE TABLE `user_master` (
   `last_name` varchar(30) NOT NULL,
   `gender` enum('Male','Female') DEFAULT NULL,
   `email` varchar(100) NOT NULL,
-  `passwd` varchar(50) NOT NULL,
-  `contact` bigint(20) NOT NULL,
-  `user_type` enum('Admin','Employee') DEFAULT NULL
+  `passwd` varchar(255) NOT NULL,
+  `contact` varchar(15) NOT NULL,
+  `user_type` enum('Admin','Employee','Manager','Client') DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
@@ -149,7 +140,20 @@ CREATE TABLE `user_master` (
 --
 
 INSERT INTO `user_master` (`user_id`, `first_name`, `middle_name`, `last_name`, `gender`, `email`, `passwd`, `contact`, `user_type`) VALUES
-(1, 'Abhinav', 'Kiran', 'Shah', 'Male', 'abhinavk.shah@gmail.com', '1bbd886460827015e5d605ed44252251', 9427021031, 'Admin');
+(1, 'Abhinav', 'Kirankumar', 'Shah', 'Male', '1bbd886460827015e5d605ed44252251', '11111111', '9427021031', 'Admin');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_response_master`
+--
+
+CREATE TABLE `user_response_master` (
+  `user_id` int(11) DEFAULT NULL,
+  `form_id` int(11) DEFAULT NULL,
+  `question_id` int(11) DEFAULT NULL,
+  `response` varchar(100) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Indexes for dumped tables
@@ -163,11 +167,23 @@ ALTER TABLE `category_master`
   ADD UNIQUE KEY `category_description` (`category_description`);
 
 --
+-- Indexes for table `employee_master`
+--
+ALTER TABLE `employee_master`
+  ADD PRIMARY KEY (`employee_id`);
+
+--
 -- Indexes for table `form_master`
 --
 ALTER TABLE `form_master`
   ADD PRIMARY KEY (`form_id`),
   ADD UNIQUE KEY `form_name` (`form_name`);
+
+--
+-- Indexes for table `manager_master`
+--
+ALTER TABLE `manager_master`
+  ADD PRIMARY KEY (`manager_id`);
 
 --
 -- Indexes for table `question_master`
@@ -211,12 +227,22 @@ ALTER TABLE `user_master`
 -- AUTO_INCREMENT for table `category_master`
 --
 ALTER TABLE `category_master`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `employee_master`
+--
+ALTER TABLE `employee_master`
+  MODIFY `employee_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `form_master`
 --
 ALTER TABLE `form_master`
   MODIFY `form_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `manager_master`
+--
+ALTER TABLE `manager_master`
+  MODIFY `manager_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `question_master`
 --
@@ -226,12 +252,12 @@ ALTER TABLE `question_master`
 -- AUTO_INCREMENT for table `skill_master`
 --
 ALTER TABLE `skill_master`
-  MODIFY `skill_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `skill_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `sub_category_master`
 --
 ALTER TABLE `sub_category_master`
-  MODIFY `sub_category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `sub_category_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `user_master`
 --
