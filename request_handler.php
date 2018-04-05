@@ -44,5 +44,9 @@ else if(isset($_POST['deleteSkill']))
 else if(isset($_POST['addForm']))
     include('libraries/addForm.php'); 
 else if(isset($_GET['viewForm']))
-    include('libraries/viewForm.php');    
+    include('libraries/viewForm.php');
+else if(isset($_GET['viewFormData']))
+    include('libraries/viewFormData.php');
+else if(isset($_POST['updateForm']))
+    include('libraries/updateForm.php');        
 ?>
