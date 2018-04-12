@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 04, 2018 at 07:20 PM
+-- Generation Time: Apr 12, 2018 at 01:33 PM
 -- Server version: 5.7.14
 -- PHP Version: 7.0.10
 
@@ -31,6 +31,16 @@ CREATE TABLE `category_master` (
   `category_description` varchar(50) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `category_master`
+--
+
+INSERT INTO `category_master` (`category_id`, `category_description`) VALUES
+(1, 'Technical'),
+(2, 'Communication'),
+(3, 'Soft'),
+(4, 'test cat1');
+
 -- --------------------------------------------------------
 
 --
@@ -53,6 +63,17 @@ CREATE TABLE `form_master` (
   `skill_id` int(11) DEFAULT NULL,
   `form_name` varchar(30) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `form_master`
+--
+
+INSERT INTO `form_master` (`form_id`, `skill_id`, `form_name`) VALUES
+(1, 1, 'Html'),
+(2, 2, 'Hadoop'),
+(3, 3, 'Test'),
+(4, 4, 'test 2'),
+(5, 1, 'test form');
 
 -- --------------------------------------------------------
 
@@ -105,6 +126,16 @@ CREATE TABLE `skill_master` (
   `skill_description` varchar(50) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `skill_master`
+--
+
+INSERT INTO `skill_master` (`skill_id`, `sub_category_id`, `skill_description`) VALUES
+(1, 1, 'Html'),
+(2, 2, 'Hadoop'),
+(3, 3, 'Test'),
+(4, 5, 'test skill');
+
 -- --------------------------------------------------------
 
 --
@@ -116,6 +147,17 @@ CREATE TABLE `sub_category_master` (
   `category_id` int(11) DEFAULT NULL,
   `sub_category_description` varchar(50) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `sub_category_master`
+--
+
+INSERT INTO `sub_category_master` (`sub_category_id`, `category_id`, `sub_category_description`) VALUES
+(1, 1, 'Web'),
+(2, 1, 'Big Data'),
+(3, 2, 'Listening'),
+(4, 2, 'Reading'),
+(5, 4, 'test sub');
 
 -- --------------------------------------------------------
 
@@ -252,7 +294,7 @@ ALTER TABLE `user_response_option`
 -- AUTO_INCREMENT for table `category_master`
 --
 ALTER TABLE `category_master`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `employee_master`
 --
@@ -262,7 +304,7 @@ ALTER TABLE `employee_master`
 -- AUTO_INCREMENT for table `form_master`
 --
 ALTER TABLE `form_master`
-  MODIFY `form_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `form_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `manager_master`
 --
@@ -277,12 +319,12 @@ ALTER TABLE `question_master`
 -- AUTO_INCREMENT for table `skill_master`
 --
 ALTER TABLE `skill_master`
-  MODIFY `skill_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `skill_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `sub_category_master`
 --
 ALTER TABLE `sub_category_master`
-  MODIFY `sub_category_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `sub_category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `user_master`
 --
