@@ -50,5 +50,9 @@ else if(isset($_GET['viewFormData']))
 else if(isset($_POST['updateForm']))
     include('libraries/updateForm.php'); 
 else if(isset($_POST['deleteForm']))
-    include('libraries/deleteForm.php');           
+    include('libraries/deleteForm.php');
+else if(isset($_POST['addQuestion']))
+    include('libraries/addQuestion.php');
 ?>
+
+
