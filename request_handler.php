@@ -53,6 +53,8 @@ else if(isset($_POST['deleteForm']))
     include('libraries/deleteForm.php');
 else if(isset($_POST['addQuestion']))
     include('libraries/addQuestion.php');
+else if(isset($_GET['viewQuestions']))
+    include('libraries/viewQuestions.php');
 ?>
 
 
