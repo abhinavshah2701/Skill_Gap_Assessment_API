@@ -24,6 +24,7 @@ else{
     if($res_temp)
     {
         $response['success']=true;
+        $response['success_message']= "Category Added";    
     }
     else
     {

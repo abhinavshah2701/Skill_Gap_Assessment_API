@@ -25,6 +25,7 @@ else{
     if($res_temp)
     {
         $response['success']=true;
+        $response['success_message']= "Category Updated";    
     }
     else
     {
