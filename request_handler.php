@@ -10,14 +10,10 @@ else if(isset($_POST['addCategory']) || isset($_POST['updateCategory']) || isset
 else if(isset($_GET['viewCategory']))
     include('libraries/viewCategory.php');
 
-else if(isset($_POST['addSubCategory']))
-    include('libraries/addSubCategory.php');
+else if(isset($_POST['addSubCategory']) || isset($_POST['updateSubCategory']) || isset($_POST['deleteSubCategory']))
+    include('libraries/manageSubCategory.php');
 else if(isset($_GET['viewSubCategory']))
     include('libraries/viewSubCategory.php');
-else if(isset($_POST['updateSubCategory']))
-    include('libraries/updateSubCategory.php');    
-else if(isset($_POST['deleteSubCategory']))
-    include('libraries/deleteSubCategory.php');
 
 else if(isset($_POST['addSkill']))
     include('libraries/addSkill.php');
