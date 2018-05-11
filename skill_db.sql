@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 12, 2018 at 01:33 PM
+-- Generation Time: May 11, 2018 at 06:36 PM
 -- Server version: 5.7.14
 -- PHP Version: 7.0.10
 
@@ -36,10 +36,10 @@ CREATE TABLE `category_master` (
 --
 
 INSERT INTO `category_master` (`category_id`, `category_description`) VALUES
-(1, 'Technical'),
-(2, 'Communication'),
-(3, 'Soft'),
-(4, 'test cat1');
+(48, 'Technical'),
+(49, 'Communications'),
+(50, 'Soft'),
+(51, 'Behavioural');
 
 -- --------------------------------------------------------
 
@@ -69,11 +69,8 @@ CREATE TABLE `form_master` (
 --
 
 INSERT INTO `form_master` (`form_id`, `skill_id`, `form_name`) VALUES
-(1, 1, 'Html'),
-(2, 2, 'Hadoop'),
-(3, 3, 'Test'),
-(4, 4, 'test 2'),
-(5, 1, 'test form');
+(1, 1, 'Html Form'),
+(2, 2, 'Communication Form');
 
 -- --------------------------------------------------------
 
@@ -95,10 +92,19 @@ CREATE TABLE `manager_master` (
 CREATE TABLE `question_master` (
   `question_id` int(11) NOT NULL,
   `form_id` int(11) DEFAULT NULL,
-  `question_type` enum('Single Option','Multiple Option') DEFAULT NULL,
+  `question_type` enum('Single Choice','Multiple Choice') NOT NULL,
   `question_description` varchar(255) NOT NULL,
   `total_rating` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `question_master`
+--
+
+INSERT INTO `question_master` (`question_id`, `form_id`, `question_type`, `question_description`, `total_rating`) VALUES
+(1, 1, 'Single Choice', 'Quis omnis sed non est non architecto odit sed enim architecto sint dolor nostrud', 10),
+(2, 1, 'Multiple Choice', 'Eum tempore in sit velit accusamus cumque et non distinctio Proident maxime voluptate sit molestias consectetur quia saepe a', 20),
+(3, 2, 'Multiple Choice', 'Quia maiores impedit nobis reprehenderit quae consequatur Consequuntur minim perferendis', 30);
 
 -- --------------------------------------------------------
 
@@ -110,9 +116,26 @@ CREATE TABLE `question_option_master` (
   `question_id` int(11) NOT NULL,
   `option_id` int(11) NOT NULL,
   `option_description` varchar(50) NOT NULL,
-  `correct_option` enum('true','false') DEFAULT NULL,
+  `correct_option` enum('Yes','No') NOT NULL,
   `option_rating` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `question_option_master`
+--
+
+INSERT INTO `question_option_master` (`question_id`, `option_id`, `option_description`, `correct_option`, `option_rating`) VALUES
+(1, 1, 'ipsum', 'No', 0),
+(1, 2, 'sed', 'Yes', 10),
+(1, 3, 'voluptatem', 'No', 0),
+(2, 1, 'sequi', 'Yes', 10),
+(2, 2, 'magnam', 'No', 0),
+(2, 3, 'excepturi', 'Yes', 10),
+(2, 4, 'sit', 'No', 0),
+(3, 1, 'Molestiae', 'No', 0),
+(3, 2, 'tenetur', 'Yes', 10),
+(3, 3, 'omnis', 'Yes', 10),
+(3, 4, 'animi', 'Yes', 10);
 
 -- --------------------------------------------------------
 
@@ -131,10 +154,9 @@ CREATE TABLE `skill_master` (
 --
 
 INSERT INTO `skill_master` (`skill_id`, `sub_category_id`, `skill_description`) VALUES
-(1, 1, 'Html'),
-(2, 2, 'Hadoop'),
-(3, 3, 'Test'),
-(4, 5, 'test skill');
+(1, 68, 'Html'),
+(2, 69, 'Solo'),
+(3, 71, 'Test Skill');
 
 -- --------------------------------------------------------
 
@@ -153,11 +175,11 @@ CREATE TABLE `sub_category_master` (
 --
 
 INSERT INTO `sub_category_master` (`sub_category_id`, `category_id`, `sub_category_description`) VALUES
-(1, 1, 'Web'),
-(2, 1, 'Big Data'),
-(3, 2, 'Listening'),
-(4, 2, 'Reading'),
-(5, 4, 'test sub');
+(72, 48, 'Java'),
+(71, 51, 'Test'),
+(73, 48, 'client server'),
+(68, 48, 'Web'),
+(69, 49, 'Learn');
 
 -- --------------------------------------------------------
 
@@ -294,7 +316,7 @@ ALTER TABLE `user_response_option`
 -- AUTO_INCREMENT for table `category_master`
 --
 ALTER TABLE `category_master`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 --
 -- AUTO_INCREMENT for table `employee_master`
 --
@@ -304,7 +326,7 @@ ALTER TABLE `employee_master`
 -- AUTO_INCREMENT for table `form_master`
 --
 ALTER TABLE `form_master`
-  MODIFY `form_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `form_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `manager_master`
 --
@@ -314,17 +336,17 @@ ALTER TABLE `manager_master`
 -- AUTO_INCREMENT for table `question_master`
 --
 ALTER TABLE `question_master`
-  MODIFY `question_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `question_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `skill_master`
 --
 ALTER TABLE `skill_master`
-  MODIFY `skill_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `skill_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `sub_category_master`
 --
 ALTER TABLE `sub_category_master`
-  MODIFY `sub_category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `sub_category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
 --
 -- AUTO_INCREMENT for table `user_master`
 --
